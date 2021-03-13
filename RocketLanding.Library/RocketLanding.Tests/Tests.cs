@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RocketLanding.Services;
 using Xunit;
@@ -12,6 +13,8 @@ namespace RocketLanding.Tests
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddScoped<IRocketLandingService, RocketLandingService>();
+            IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            serviceCollection.AddSingleton(configuration);
             _rocketLandingService = serviceCollection.BuildServiceProvider().GetService<IRocketLandingService>();
         }
 

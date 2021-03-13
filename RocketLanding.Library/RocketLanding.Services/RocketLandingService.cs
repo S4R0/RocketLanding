@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 
 namespace RocketLanding.Services
 {
     public class RocketLandingService : IRocketLandingService
     {
+        private readonly IConfiguration _configuration;
         private static string[,] _landingArea = new string[101, 101];
 
-        public RocketLandingService()
+        public RocketLandingService(IConfiguration configuration)
         {
+            _configuration = configuration;
+
             InitLandingArea();
             InitLandingPlatform();
         }
@@ -41,8 +45,8 @@ namespace RocketLanding.Services
 
         private void InitLandingPlatform()
         {
-            var platformXLenght = 10;
-            var platformYLenght = 10;
+            var platformXLenght = int.Parse(_configuration.GetSection("LandingPlatform:Size:X").Value);
+            var platformYLenght = int.Parse(_configuration.GetSection("LandingPlatform:Size:Y").Value);
 
             for (var x = 0; x <= platformXLenght - 1; x++)
             {
