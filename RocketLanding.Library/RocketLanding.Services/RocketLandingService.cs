@@ -7,6 +7,7 @@
         public RocketLandingService()
         {
             InitLandingArea();
+            InitLandingPlatform();
         }
 
         #region public methods
@@ -21,6 +22,20 @@
                 for (var y = 0; y <= 100; y++)
                 {
                     _landingArea[x, y] = Constants.outPlatform;
+                }
+            }
+        }
+
+        private void InitLandingPlatform()
+        {
+            var platformXLenght = 10;
+            var platformYLenght = 10;
+
+            for (var x = 0; x <= platformXLenght - 1; x++)
+            {
+                for (var y = 0; y <= platformYLenght - 1; y++)
+                {
+                    _landingArea[5 + x, 5 + y] = Constants.ok;
                 }
             }
         }

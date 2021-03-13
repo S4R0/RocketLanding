@@ -21,5 +21,12 @@ namespace RocketLanding.Tests
             var result = _rocketLandingService.CheckTrajectory(16, 15);
             Assert.Equal(Constants.outPlatform, result);
         }
+
+        [Fact]
+        public void CheckTrajectory_CorrectTrajectory_True()
+        {
+            var result = _rocketLandingService.CheckTrajectory(5, 5);
+            Assert.Equal(Constants.ok, result);
+        }
     }
 }
